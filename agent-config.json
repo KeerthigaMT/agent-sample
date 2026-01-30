@@ -1,0 +1,94 @@
+{
+  "name": "task_manager_agent",
+  "displayName": "Task Manager Agent",
+  "description": "A simple task management agent with React frontend and Python Flask backend. Manages tasks with create, update, delete, and completion tracking capabilities.",
+  "version": "1.0.0",
+  "category": "Developer",
+  "tags": ["task-management", "productivity", "python", "react", "flask"],
+  "icon": "📝",
+  "pricing": {
+    "type": "free",
+    "price": 0
+  },
+  "author": {
+    "name": "Keerthiga",
+    "email": "keerthiga@opsera.io",
+    "organization": "Opsera"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KeerthigaMT/agent-sample"
+  },
+  "capabilities": [
+    "Create and manage tasks",
+    "Track task completion status",
+    "Store task descriptions",
+    "RESTful API endpoints",
+    "Docker containerized deployment",
+    "Modern React UI with Vite"
+  ],
+  "endpoints": {
+    "base_url": "http://localhost:5000/api",
+    "tasks": {
+      "get_all": "GET /tasks",
+      "create": "POST /tasks",
+      "update": "PUT /tasks/{task_id}",
+      "delete": "DELETE /tasks/{task_id}",
+      "health": "GET /health"
+    }
+  },
+  "environment": {
+    "required": [],
+    "optional": [
+      {
+        "name": "OPSERA_SYNC_ENABLED",
+        "description": "Enable sync with Opsera platform",
+        "default": "false"
+      },
+      {
+        "name": "OPSERA_API_KEY",
+        "description": "API key for Opsera integration",
+        "default": ""
+      }
+    ]
+  },
+  "deployment": {
+    "type": "docker",
+    "docker_compose": true,
+    "ports": {
+      "backend": 5000,
+      "frontend": 3000
+    }
+  },
+  "inputs": [
+    {
+      "name": "task_title",
+      "type": "string",
+      "required": true,
+      "description": "Title of the task"
+    },
+    {
+      "name": "task_description",
+      "type": "string",
+      "required": false,
+      "description": "Detailed description of the task"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "task_id",
+      "type": "string",
+      "description": "Unique identifier for the created task"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Task completion status"
+    }
+  ],
+  "integration": {
+    "opsera_mcp": true,
+    "webhook_support": true,
+    "api_authentication": "none"
+  }
+}
